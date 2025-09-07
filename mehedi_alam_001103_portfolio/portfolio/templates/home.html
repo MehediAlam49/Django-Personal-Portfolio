@@ -1,0 +1,122 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+  <!-- Styles -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f7fa;
+    }
+    header {
+      background-color: #4e73df;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5em;
+    }
+    .hero {
+      background-color: #2d3e50;
+      color: white;
+      padding: 100px 0;
+    }
+    .hero .container {
+      width: 80%;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .hero-text {
+      flex: 1;
+      min-width: 280px;
+      padding-right: 20px;
+    }
+    .hero h2 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .hero img {
+      flex: 1;
+      max-width: 500px;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    .container {
+      width: 80%;
+      margin: auto;
+    }
+    .skills,
+    .projects,
+    .contact {
+      margin: 50px 0;
+    }
+    .skills ul,
+    .projects .project-list {
+      list-style-type: none;
+      padding: 0;
+    }
+    .skills li,
+    .projects .project-item {
+      margin-bottom: 10px;
+      font-size: 1.2em;
+    }
+    .projects .project-item img {
+      width: 100%;
+      height: auto;
+    }
+    footer {
+      background-color: #4e73df;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+
+  <!-- Date and Time Display -->
+  {% comment %} <div class="text-center py-2 bg-light border-bottom">
+    <strong>Today is:</strong> {{ current_date }} <br />
+    <strong>Current time:</strong> <span id="current-time"></span>
+  </div> {% endcomment %}
+
+  <div class="info-value">created at: {{ request.user.profile.created_at }}</div>
+
+  <!-- Header -->
+  <header>
+    <h1>Welcome to My Portfolio</h1>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-text">
+        <h2>Hi, I'm {{ request.user.profile.fullName }}</h2>
+        <p>I'm a web developer with a passion for responsive websites and applications.</p>
+      </div>
+      <img src="{{ request.user.profile.profilePhoto.url }}" alt="Profile Image" class="profile-img mb-3" />
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Mehedi Alam. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    function updateTime() {
+      const now = new Date()
+      const options = { hour: '2-digit', minute: '2-digit', second: '2-digit' }
+      document.getElementById('current-time').textContent = now.toLocaleTimeString([], options)
+    }
+    updateTime()
+    setInterval(updateTime, 1000)
+  </script>
+{% endblock %}

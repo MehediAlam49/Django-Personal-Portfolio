@@ -1,0 +1,76 @@
+{% extends 'master/base.html' %}
+
+{% block body %}
+<style>
+  .body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f8f9fa;
+  }
+  .profile-card {
+    background: #ffffff;
+    padding: 40px 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 100%;
+  }
+  .profile-card .form-control {
+    border-radius: 10px;
+  }
+  .profile-card .btn {
+    border-radius: 10px;
+  }
+  .profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #dee2e6;
+    margin-bottom: 15px;
+  }
+</style>
+
+<div class="body">
+  <div class="profile-card">
+    <div class="profile-header">
+      {% if request.user.profile %}
+        <img src="{{ request.user.profile.profilePhoto.url }}" alt="Profile Image" class="profile-img mb-3">
+      {% else %}
+        <img src="https://via.placeholder.com/100" alt="Profile Picture" class="profile-img">
+      {% endif %}
+      <h3>Edit Profile</h3>
+    </div>
+
+    <!-- Messages -->
+    {% if messages %}
+      <div>
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{form}}
+
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg w-100">
+          Update Profile
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
