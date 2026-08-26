@@ -1,0 +1,35 @@
+<svg role="img" aria-labelledby="portfolio-architecture-title portfolio-architecture-description" viewBox="0 0 960 330" width="960" height="330" xmlns="http://www.w3.org/2000/svg">
+  <title id="portfolio-architecture-title">Django personal portfolio architecture</title>
+  <desc id="portfolio-architecture-description">Browser requests move through URL routing into authenticated views, then through forms and models to SQLite and media storage before templates render the response.</desc>
+  <style>
+    .node { fill: #f8fafc; stroke: #1e293b; stroke-width: 2; }
+    .label { fill: #0f172a; font: 600 16px system-ui, sans-serif; text-anchor: middle; }
+    .detail { fill: #475569; font: 13px system-ui, sans-serif; text-anchor: middle; }
+    .flow { fill: none; stroke: #0f766e; stroke-width: 3; stroke-dasharray: 9 8; animation: move 1.8s linear infinite; }
+    @keyframes move { to { stroke-dashoffset: -34; } }
+    @media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#0f766e" />
+    </marker>
+  </defs>
+  <rect class="node" x="20" y="125" width="150" height="80" rx="8" />
+  <text class="label" x="95" y="157">Browser</text><text class="detail" x="95" y="180">HTTP request</text>
+  <rect class="node" x="215" y="125" width="150" height="80" rx="8" />
+  <text class="label" x="290" y="157">URLConf</text><text class="detail" x="290" y="180">named routes</text>
+  <rect class="node" x="410" y="125" width="150" height="80" rx="8" />
+  <text class="label" x="485" y="157">Views</text><text class="detail" x="485" y="180">auth + workflow</text>
+  <rect class="node" x="605" y="45" width="150" height="80" rx="8" />
+  <text class="label" x="680" y="77">Forms</text><text class="detail" x="680" y="100">validation</text>
+  <rect class="node" x="605" y="205" width="150" height="80" rx="8" />
+  <text class="label" x="680" y="237">Models</text><text class="detail" x="680" y="260">data + media</text>
+  <rect class="node" x="800" y="125" width="140" height="80" rx="8" />
+  <text class="label" x="870" y="157">Templates</text><text class="detail" x="870" y="180">HTML response</text>
+  <path class="flow" marker-end="url(#arrow)" d="M170 165 H215" />
+  <path class="flow" marker-end="url(#arrow)" d="M365 165 H410" />
+  <path class="flow" marker-end="url(#arrow)" d="M560 150 C580 120 585 95 605 85" />
+  <path class="flow" marker-end="url(#arrow)" d="M560 180 C580 210 585 235 605 245" />
+  <path class="flow" marker-end="url(#arrow)" d="M755 85 C790 105 795 140 800 155" />
+  <path class="flow" marker-end="url(#arrow)" d="M755 245 C790 225 795 190 800 175" />
+</svg>
